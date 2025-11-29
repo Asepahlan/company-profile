@@ -76,10 +76,17 @@ export function ServicesSection() {
               key={index} 
               className="group bg-white dark:bg-gray-700 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-600"
             >
+<<<<<<< HEAD
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-blue-500 transition-colors duration-300">
                 {service.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+=======
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors duration-300">
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
                 {service.title}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4">{service.description}</p>
@@ -103,7 +110,11 @@ export function ServicesSection() {
         </div>
 
         <div className="text-center mt-12">
+<<<<<<< HEAD
           <Button variant="outline" size="lg" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white transition-colors duration-300">
+=======
+          <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-white transition-colors duration-300">
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
             Lihat Semua Layanan
           </Button>
         </div>

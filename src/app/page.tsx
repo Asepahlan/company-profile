@@ -115,6 +115,7 @@ const testimonials = [
   },
 ];
 
+<<<<<<< HEAD
 // Generate structured data for the homepage
 function generateStructuredData() {
   return JSON.stringify({
@@ -148,6 +149,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
+=======
+export default function Home() {
+  return (
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
@@ -444,6 +449,9 @@ export default function Home() {
         </div>
       </section>
     </div>
+<<<<<<< HEAD
     </>
+=======
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
   );
 }

@@ -1,6 +1,9 @@
 // src/components/ui/Button.tsx
 import { ButtonHTMLAttributes, forwardRef } from 'react';
+<<<<<<< HEAD
 import { cn } from '@/lib/utils';
+=======
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
@@ -26,11 +29,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
     
     const variants = {
+<<<<<<< HEAD
       primary: 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800',
       secondary: 'bg-gray-600 text-white hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-800',
       outline: 'border border-blue-700 bg-transparent hover:bg-blue-50 text-blue-700 dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-900/30',
       ghost: 'bg-transparent hover:bg-gray-100 text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800',
       link: 'bg-transparent text-blue-700 hover:underline p-0 h-auto dark:text-blue-400'
+=======
+      primary: 'bg-blue-600 text-white hover:bg-blue-700',
+      secondary: 'bg-gray-600 text-white hover:bg-gray-700',
+      outline: 'border border-gray-300 bg-transparent hover:bg-gray-50 text-gray-700',
+      ghost: 'bg-transparent hover:bg-gray-100 text-gray-700',
+      link: 'bg-transparent text-blue-600 hover:underline p-0 h-auto'
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
     };
 
     const sizes = {
@@ -41,6 +52,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
+<<<<<<< HEAD
         className={cn(
           baseStyles,
           sizes[size],
@@ -49,6 +61,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           className
         )}
         ref={ref}
+=======
+        ref={ref}
+        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
         disabled={isLoading || disabled}
         {...props}
       >

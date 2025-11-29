@@ -38,7 +38,11 @@ export function TestimonialsSection() {
   };
 
   return (
+<<<<<<< HEAD
     <section id="testimoni" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 text-white">
+=======
+    <section id="testimoni" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-blue-200 font-semibold mb-2 block">Testimoni</span>
@@ -72,7 +76,11 @@ export function TestimonialsSection() {
                 </div>
                 <p className="text-lg mb-6 italic">"{testimonial.content}"</p>
                 <div className="flex items-center">
+<<<<<<< HEAD
                   <div className="w-14 h-14 rounded-full bg-blue-500/30 dark:bg-blue-400/20 flex items-center justify-center text-2xl font-bold text-white dark:text-white/90 mr-4 border-2 border-blue-300 dark:border-blue-400/50">
+=======
+                  <div className="w-14 h-14 rounded-full bg-blue-500/30 flex items-center justify-center text-2xl font-bold text-white mr-4 border-2 border-blue-300">
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
@@ -87,7 +95,11 @@ export function TestimonialsSection() {
           <div className="flex justify-center mt-10 space-x-4">
             <button
               onClick={prevTestimonial}
+<<<<<<< HEAD
               className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white dark:text-white/90 transition-colors border border-white/20 hover:border-white/30"
+=======
+              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+>>>>>>> fa5288eb9babb8436558af90498de2f306118662
               aria-label="Testimonial sebelumnya"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
