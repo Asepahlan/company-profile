@@ -91,13 +91,13 @@ const faqData: FAQItem[] = [
   {
     id: 2,
     question: 'Berapa biaya pembuatan website perusahaan?',
-    answer: 'Harga bervariasi tergantung pada kompleksitas dan fitur yang dibutuhkan. Website company profile sederhana dimulai dari Rp 10 juta, sementara website e-commerce atau sistem kustom bisa mencapai puluhan juta rupiah. Kami menyediakan penawaran harga yang kompetitif dan transparan.',
+    answer: 'Harga bervariasi tergantung pada kompleksitas dan fitur yang dibutuhkan. Website AhlanDev sederhana dimulai dari Rp 10 juta, sementara website e-commerce atau sistem kustom bisa mencapai puluhan juta rupiah. Kami menyediakan penawaran harga yang kompetitif dan transparan.',
     category: 'pembayaran'
   },
   {
     id: 3,
     question: 'Berapa lama waktu yang dibutuhkan untuk menyelesaikan proyek?',
-    answer: 'Waktu pengerjaan bervariasi tergantung pada kompleksitas proyek. Biasanya, website company profile sederhana membutuhkan waktu 2-4 minggu, sementara proyek yang lebih kompleks seperti e-commerce atau aplikasi kustom bisa memakan waktu 2-6 bulan. Kami akan memberikan estimasi waktu yang lebih akurat setelah menganalisis kebutuhan proyek Anda.',
+    answer: 'Waktu pengerjaan bervariasi tergantung pada kompleksitas proyek. Biasanya, website AhlanDev sederhana membutuhkan waktu 2-4 minggu, sementara proyek yang lebih kompleks seperti e-commerce atau aplikasi kustom bisa memakan waktu 2-6 bulan. Kami akan memberikan estimasi waktu yang lebih akurat setelah menganalisis kebutuhan proyek Anda.',
     category: 'proyek'
   },
   {

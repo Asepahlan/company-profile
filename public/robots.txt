@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ahlan-profile.vercel.app/sitemap.xml

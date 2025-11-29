@@ -4,19 +4,56 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaTimesCircle } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
+
+// Animation variants
+const menuVariants = {
+  hidden: { opacity: 0, x: '100%' },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      type: 'spring' as const,
+      damping: 30,
+      stiffness: 300
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    x: '100%',
+    transition: {
+      type: 'spring' as const,
+      damping: 30,
+      stiffness: 300
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.3
+    }
+  })
+};
 
 const navigation = [
-  { name: 'Beranda', href: '/beranda' },
+  { name: 'Beranda', href: '/' },
   { name: 'Tentang Kami', href: '/tentang-kami' },
   { 
     name: 'Layanan', 
     href: '/layanan',
     submenu: [
-      { name: 'Web Development', href: '/layanan/web-development' },
-      { name: 'Mobile Apps', href: '/layanan/mobile-apps' },
-      { name: 'UI/UX Design', href: '/layanan/ui-ux' },
-      { name: 'Digital Marketing', href: '/layanan/digital-marketing' },
+      { name: 'Web Development', href: '/layanan/web-development', description: 'Website modern dan responsif' },
+      { name: 'Mobile Apps', href: '/layanan/mobile-apps', description: 'Aplikasi mobile untuk iOS & Android' },
+      { name: 'UI/UX Design', href: '/layanan/ui-ux', description: 'Desain antarmuka pengguna yang menarik' },
+      { name: 'Digital Marketing', href: '/layanan/digital-marketing', description: 'Strategi pemasaran digital' },
     ]
   },
   { name: 'Portofolio', href: '/portfolio' },
@@ -24,7 +61,7 @@ const navigation = [
   { name: 'Tim', href: '/tim' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Kontak', href: '/kontak' }
-    ]
+];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,162 +88,255 @@ export function Navbar() {
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 backdrop-blur-sm py-4'
+        scrolled 
+          ? 'bg-white/95 dark:bg-gray-900/95 shadow-md py-3' 
+          : 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm py-6'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-primary">
-            <span className="text-primary">Nama</span>Perusahaan
+          <Link 
+            href="/" 
+            className="text-2xl font-bold tracking-tight"
+          >
+            <span className="text-blue-600">Ahlan</span>
+            <span className="dark:text-white">Dev</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center space-x-2">
             {navigation.map((item) => (
-              <div key={item.name} className="relative group">
+              <div key={item.name} className="relative group" onMouseEnter={() => setOpenSubmenu(item.name)}>
                 {item.submenu ? (
                   <div className="relative">
                     <button
                       onClick={() => toggleSubmenu(item.name)}
-                      className={`px-4 py-2 rounded-lg font-medium flex items-center ${
-                        pathname === item.href || 
-                        item.submenu.some(sub => pathname === sub.href) ||
-                        (item.href !== '/' && pathname.startsWith(item.href))
-                          ? 'text-primary'
-                          : 'text-gray-700 hover:text-primary'
-                      }`}
+                      className={cn(
+                        'px-4 py-2.5 rounded-lg font-medium flex items-center transition-colors',
+                        'text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary',
+                        'focus:outline-none focus:ring-2 focus:ring-primary/50',
+                        {
+                          'text-primary dark:text-primary': pathname === item.href || 
+                            item.submenu.some(sub => pathname === sub.href) ||
+                            (item.href !== '/' && pathname.startsWith(item.href))
+                        }
+                      )}
                     >
                       {item.name}
-                      <FaChevronDown className="ml-1 text-xs" />
+                      <FaChevronDown className={cn(
+                        'ml-1.5 text-xs transition-transform duration-200',
+                        openSubmenu === item.name && 'transform rotate-180'
+                      )} />
                     </button>
                     
                     {/* Dropdown Menu */}
-                    <div 
-                      className={`absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 ${
-                        openSubmenu === item.name ? 'block' : 'hidden'
-                      } group-hover:block transition-all duration-200`}
-                      onMouseLeave={() => setOpenSubmenu(null)}
-                    >
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className={`block px-4 py-2 text-sm ${
-                            pathname === subItem.href || pathname.startsWith(subItem.href)
-                              ? 'bg-primary/10 text-primary'
-                              : 'text-gray-700 hover:bg-gray-50'
-                          }`}
+                    <AnimatePresence>
+                      {openSubmenu === item.name && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          className="absolute left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-xl z-50 overflow-hidden"
+                          onMouseLeave={() => setOpenSubmenu(null)}
                         >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
+                          {item.submenu.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              href={subItem.href}
+                              className={cn(
+                                'block px-5 py-3 text-sm transition-colors',
+                                'hover:bg-gray-50 dark:hover:bg-gray-700/50',
+                                'border-b border-gray-100 dark:border-gray-700 last:border-0',
+                                {
+                                  'bg-primary/5 text-primary dark:bg-primary/10': 
+                                    pathname === subItem.href || pathname.startsWith(subItem.href)
+                                }
+                              )}
+                            >
+                              <div className="font-medium">{subItem.name}</div>
+                              {subItem.description && (
+                                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                  {subItem.description}
+                                </div>
+                              )}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ) : (
                   <Link
                     href={item.href}
-                    className={`px-4 py-2 rounded-lg font-medium ${
-                      pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-                        ? 'text-primary'
-                        : 'text-gray-700 hover:text-primary'
-                    }`}
+                    className={cn(
+                      'px-4 py-2.5 rounded-lg font-medium transition-colors',
+                      'text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary',
+                      {
+                        'text-primary dark:text-primary': 
+                          pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                      }
+                    )}
                   >
                     {item.name}
                   </Link>
                 )}
               </div>
             ))}
-            <ThemeToggle />
+            
+            <div className="ml-2">
+              <ThemeToggle />
+            </div>
+            
             <Link
               href="/kontak"
-              className="ml-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              className="ml-4 bg-primary text-white px-6 py-2.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
               Hubungi Kami
             </Link>
           </nav>
 
           {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 text-gray-700 hover:text-primary focus:outline-none"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button
+              className="p-2.5 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary focus:outline-none"
+              onClick={() => setIsOpen(true)}
+              aria-label="Open menu"
+            >
+              <FaBars className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          className={`md:hidden mt-4 pb-4 transition-all duration-300 ${
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-          }`}
-        >
-          <nav className="flex flex-col space-y-2">
-            {navigation.map((item) => (
-              <div key={item.name}>
-                {item.submenu ? (
-                  <div>
-                    <button
-                      onClick={() => toggleSubmenu(item.name)}
-                      className={`w-full flex justify-between items-center px-4 py-3 rounded-lg font-medium ${
-                        pathname === item.href || 
-                        item.submenu.some(sub => pathname === sub.href) ||
-                        (item.href !== '/' && pathname.startsWith(item.href))
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
+        {/* Mobile Navigation Overlay */}
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                onClick={() => setIsOpen(false)}
+              />
+              
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={menuVariants}
+                className="fixed inset-y-0 right-0 w-4/5 max-w-sm bg-white dark:bg-gray-900 shadow-2xl z-50 overflow-y-auto"
+              >
+                <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-800">
+                  <div className="text-2xl font-bold">
+                    <span className="text-blue-600">Ahlan</span>
+                    <span className="dark:text-white">Dev</span>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    aria-label="Close menu"
+                  >
+                    <FaTimesCircle className="h-6 w-6" />
+                  </button>
+                </div>
+                
+                <nav className="p-6 space-y-2">
+                  {navigation.map((item, index) => (
+                    <motion.div 
+                      key={item.name}
+                      custom={index}
+                      initial="hidden"
+                      animate="visible"
+                      variants={itemVariants}
                     >
-                      {item.name}
-                      <FaChevronDown 
-                        className={`transition-transform ${openSubmenu === item.name ? 'transform rotate-180' : ''}`} 
-                      />
-                    </button>
-                    <div 
-                      className={`pl-6 mt-1 space-y-1 ${
-                        openSubmenu === item.name ? 'block' : 'hidden'
-                      }`}
-                    >
-                      {item.submenu.map((subItem) => (
+                      {item.submenu ? (
+                        <div className="space-y-1">
+                          <button
+                            onClick={() => toggleSubmenu(item.name)}
+                            className={`w-full flex justify-between items-center px-4 py-3 rounded-xl font-medium text-left ${
+                              pathname === item.href || 
+                              item.submenu.some(sub => pathname === sub.href) ||
+                              (item.href !== '/' && pathname.startsWith(item.href))
+                                ? 'bg-primary/10 text-primary'
+                                : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                            }`}
+                          >
+                            {item.name}
+                            <FaChevronDown 
+                              className={`transition-transform ${openSubmenu === item.name ? 'transform rotate-180' : ''}`} 
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {openSubmenu === item.name && (
+                              <motion.div 
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="pl-4 space-y-1 overflow-hidden"
+                              >
+                                {item.submenu.map((subItem) => (
+                                  <Link
+                                    key={subItem.name}
+                                    href={subItem.href}
+                                    className={`block px-4 py-2.5 text-sm rounded-lg ${
+                                      pathname === subItem.href || pathname.startsWith(subItem.href)
+                                        ? 'bg-primary/10 text-primary'
+                                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                                    }`}
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    <div className="font-medium">{subItem.name}</div>
+                                    {subItem.description && (
+                                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                                        {subItem.description}
+                                      </div>
+                                    )}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
                         <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className={`block px-4 py-2 text-sm rounded-lg ${
-                            pathname === subItem.href || pathname.startsWith(subItem.href)
-                              ? 'bg-primary/10 text-primary'
-                              : 'text-gray-700 hover:bg-gray-50'
+                          href={item.href}
+                          className={`block px-4 py-3 rounded-xl text-base font-medium ${
+                            pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                              ? 'text-primary bg-primary/10'
+                              : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
-                          {subItem.name}
+                          {item.name}
                         </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`block px-3 py-2 rounded-lg text-base font-medium ${
-                      pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-                        ? 'text-primary bg-primary/10'
-                        : 'text-gray-700 hover:text-primary'
-                    }`}
-                    onClick={() => setIsOpen(false)}
+                      )}
+                    </motion.div>
+                  ))}
+                  
+                  <motion.div 
+                    custom={navigation.length}
+                    initial="hidden"
+                    animate="visible"
+                    variants={itemVariants}
+                    className="pt-4"
                   >
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-            <Link
-              href="/kontak"
-              className="block text-center bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 mt-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Hubungi Kami
-            </Link>
-          </nav>
-        </div>
+                    <Link
+                      href="/kontak"
+                      className="block w-full text-center bg-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-primary/90 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Hubungi Kami
+                    </Link>
+                  </motion.div>
+                </nav>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

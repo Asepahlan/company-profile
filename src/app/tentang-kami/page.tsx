@@ -338,7 +338,7 @@ export default function TentangKami() {
             <div className="prose max-w-none">
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">Siapa Kami</h3>
               <p className="text-lg text-gray-600 mb-8">
-                Kami adalah perusahaan teknologi yang berdedikasi untuk memberikan solusi digital inovatif yang membantu bisnis tumbuh di era digital. Dengan tim yang berpengalaman dan berkomitmen, kami hadir untuk menjadi mitra strategis dalam transformasi digital bisnis Anda.
+                AhlanDev adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis tumbuh di era digital. Sejak 2020, kami telah membantu berbagai klien dari berbagai sektor industri dalam melakukan transformasi digital.
               </p>
               
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">Apa yang Kami Kerjakan</h3>

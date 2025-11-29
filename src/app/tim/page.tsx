@@ -127,7 +127,7 @@ const teamMembers: TeamMember[] = [
     image: '/images/team/ceo.jpg',
     social: {
       linkedin: 'https://linkedin.com',
-      email: 'ahmad@perusahaananda.com'
+      email: 'ahmad@ahlandev.com'
     }
   },
   {
@@ -139,7 +139,7 @@ const teamMembers: TeamMember[] = [
     social: {
       linkedin: 'https://linkedin.com',
       github: 'https://github.com',
-      email: 'budi@perusahaananda.com'
+      email: 'budi@ahlandev.com'
     }
   },
   {
@@ -151,7 +151,7 @@ const teamMembers: TeamMember[] = [
     social: {
       behance: 'https://behance.com',
       dribbble: 'https://dribbble.com',
-      email: 'citra@perusahaananda.com'
+      email: 'citra@ahlandev.com'
     }
   },
   {
@@ -163,7 +163,7 @@ const teamMembers: TeamMember[] = [
     social: {
       linkedin: 'https://linkedin.com',
       instagram: 'https://instagram.com',
-      email: 'dian@perusahaananda.com'
+      email: 'dian@ahlandev.com'
     }
   },
   {
@@ -175,7 +175,7 @@ const teamMembers: TeamMember[] = [
     social: {
       github: 'https://github.com',
       gitlab: 'https://gitlab.com',
-      email: 'eko@perusahaananda.com'
+      email: 'eko@ahlandev.com'
     }
   },
   {
@@ -187,7 +187,7 @@ const teamMembers: TeamMember[] = [
     social: {
       behance: 'https://behance.com',
       dribbble: 'https://dribbble.com',
-      email: 'fitri@perusahaananda.com'
+      email: 'fitri@ahlandev.com'
     }
   }
 ];
@@ -359,7 +359,7 @@ export default function TeamPage() {
               <Link href="tel:+6281234567890">+62 812-3456-7890</Link>
             </Button>
           </div>
-          <p className="mt-4 text-sm text-blue-200">Atau kirim email ke: info@perusahaananda.com</p>
+          <p className="mt-4 text-sm text-blue-200">Atau kirim email ke: info@ahlandev.com</p>
         </div>
       </section>
     </div>

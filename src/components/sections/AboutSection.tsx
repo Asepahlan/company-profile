@@ -10,7 +10,7 @@ export function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Siapa Kami?</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            PT. Solusi Digital Indonesia adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis tumbuh di era digital. Sejak 2010, kami telah membantu lebih dari 500 klien dari berbagai sektor industri.
+            AhlanDev adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis tumbuh di era digital. Sejak 2020, kami telah membantu berbagai klien dari berbagai sektor industri dalam melakukan transformasi digital.
           </p>
         </div>
         

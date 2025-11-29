@@ -20,10 +20,10 @@ export function organizationStructuredData() {
   return generateStructuredData({
     type: 'Organization',
     data: {
-      name: 'Nama Perusahaan',
-      url: 'https://perusahaananda.com',
-      logo: 'https://perusahaananda.com/images/logo.png',
-      description: 'Perusahaan teknologi yang menyediakan solusi digital inovatif untuk bisnis',
+      name: 'AhlanDev',
+      url: 'https://ahlandev.com',
+      logo: 'https://ahlandev.com/images/logo.png',
+      description: 'AhlanDev - Solusi teknologi inovatif untuk transformasi digital bisnis Anda',
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Jl. Contoh No. 123',
@@ -39,10 +39,10 @@ export function organizationStructuredData() {
         availableLanguage: ['Indonesian', 'English'],
       },
       sameAs: [
-        'https://facebook.com/perusahaan',
-        'https://twitter.com/perusahaan',
-        'https://linkedin.com/company/perusahaan',
-        'https://instagram.com/perusahaan',
+        'https://facebook.com/ahlandev',
+        'https://twitter.com/ahlandev',
+        'https://linkedin.com/company/ahlandev',
+        'https://instagram.com/ahlandev',
       ],
       foundingDate: '2010-01-01',
       employeeCount: '50-100',
@@ -61,8 +61,8 @@ export function webPageStructuredData(title: string, description: string, url: s
       dateModified: new Date().toISOString(),
       isPartOf: {
         '@type': 'WebSite',
-        name: 'Nama Perusahaan',
-        url: 'https://perusahaananda.com',
+        name: 'AhlanDev',
+        url: 'https://ahlandev.com',
       },
     },
   });
@@ -77,8 +77,8 @@ export function serviceStructuredData(serviceName: string, description: string) 
       description,
       provider: {
         '@type': 'Organization',
-        name: 'Nama Perusahaan',
-        url: 'https://perusahaananda.com',
+        name: 'AhlanDev',
+        url: 'https://ahlandev.com',
       },
       serviceType: 'Digital Services',
       areaServed: 'Indonesia',

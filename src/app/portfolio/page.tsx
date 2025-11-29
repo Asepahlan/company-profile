@@ -134,14 +134,14 @@ const projects = [
   },
   {
     id: 5,
-    title: 'Aplikasi Manajemen Proyek',
+    title: 'Aplikasi Manajemen Proyek AhlanDev',
     category: 'Mobile Apps',
     description: 'Aplikasi kolaborasi dengan fitur tasking, chat, dan notifikasi real-time.',
     image: '/images/portfolio/project-management.jpg',
   },
   {
     id: 6,
-    title: 'Website Company Profile',
+    title: 'Website AhlanDev',
     category: 'Website',
     description: 'Website profesional untuk meningkatkan kredibilitas bisnis.',
     image: '/images/portfolio/company-profile.jpg',

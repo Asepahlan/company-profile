@@ -14,25 +14,31 @@ function generateOrganizationStructuredData() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "AhlanDev",
-    "url": "https://ahlandev.com",
-    "logo": "/images/ahlan.JPG",
+    "url": "https://ahlan-profile.vercel.app/",
+    "logo": "/logo.png",
+    "description": "AhlanDev adalah penyedia jasa pembuatan website profesional menggunakan Next.js.",
     "sameAs": [
-      "https://facebook.com/ahlandev",
-      "https://twitter.com/ahlandev",
-      "https://instagram.com/ahlandev"
+      "https://instagram.com/ahlan",
+      "https://github.com/Asepahlan"
     ]
   });
 }
 
 export const metadata: Metadata = {
-  title: 'AhlanDev - Solusi Teknologi Profesional',
-  description: 'Menyediakan layanan pengembangan web dan aplikasi berkualitas tinggi untuk bisnis Anda',
+  title: 'AhlanDev | Professional Web Developer & Company Profile',
+  description: 'Website resmi AhlanDev yang menyediakan jasa pengembangan website modern, elegan, dan cepat. Dibangun menggunakan Next.js. Kunjungi: https://ahlan-profile.vercel.app/',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
   keywords: [
+    'AhlanDev',
+    'Ahlan Profile',
+    'Ahlan Developer',
+    'Web Developer Tasikmalaya',
+    'Jasa Pembuatan Website',
+    'Company Profile Ahlan',
     'pengembangan web',
     'aplikasi mobile',
     'desain ui/ux',
@@ -40,11 +46,10 @@ export const metadata: Metadata = {
     'solusi teknologi',
     'pengembangan software',
     'jasa it',
-    'ahlandev',
     'teknologi informasi',
     'jasa pembuatan website'
   ],
-  authors: [{ name: 'AhlanDev' }],
+  authors: [{ name: 'Asep Muhammad Ahlan Selan' }],
   creator: 'AhlanDev',
   publisher: 'AhlanDev',
   formatDetection: {
@@ -53,16 +58,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'AhlanDev - Solusi Teknologi Profesional',
-    description: 'Menyediakan layanan pengembangan web dan aplikasi berkualitas tinggi untuk bisnis Anda',
-    url: 'https://ahlandev.com',
+    title: 'AhlanDev',
+    description: 'Website resmi AhlanDev penyedia jasa pembuatan website profesional.',
+    url: 'https://ahlan-profile.vercel.app/',
     siteName: 'AhlanDev',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'AhlanDev - Solusi Teknologi Profesional',
+        alt: 'AhlanDev - Professional Web Developer & Company Profile',
       },
     ],
     locale: 'id_ID',
@@ -70,8 +75,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AhlanDev - Solusi Teknologi Profesional',
-    description: 'Menyediakan layanan pengembangan web dan aplikasi berkualitas tinggi untuk bisnis Anda',
+    title: 'AhlanDev',
+    description: 'Website resmi AhlanDev.',
     images: ['/images/og-image.jpg'],
     creator: '@ahlandev',
   },

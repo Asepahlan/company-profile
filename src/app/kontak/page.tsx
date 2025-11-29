@@ -269,9 +269,9 @@ export default function ContactPage() {
                 icon={FiMail} 
                 title="Email"
               >
-                <a href="mailto:info@perusahaananda.com" className="flex items-center hover:text-blue-600 transition-colors">
+                <a href="mailto:info@ahlandev.com" className="flex items-center hover:text-blue-600 transition-colors">
                   <FiMail className="mr-2 text-blue-500" />
-                  info@perusahaananda.com
+                  info@ahlandev.com
                 </a>
               </ContactInfoCard>
 
