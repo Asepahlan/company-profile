@@ -13,7 +13,6 @@ export function CtaSection() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-<<<<<<< HEAD
             <Button 
               variant="primary" 
               size="lg" 
@@ -26,23 +25,13 @@ export function CtaSection() {
               size="lg" 
               className="border-white text-white hover:bg-white/10 dark:border-white/70 dark:text-white dark:hover:bg-white/10"
             >
-=======
-            <Button variant="primary" size="lg" className="bg-white text-primary hover:bg-gray-100">
-              Konsultasi Gratis
-            </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
               Lihat Harga
             </Button>
           </div>
           
           <div className="flex justify-center space-x-8 text-blue-100">
             <div className="text-center">
-<<<<<<< HEAD
               <div className="text-3xl font-bold text-white dark:text-white/90 mb-1">500+</div>
-=======
-              <div className="text-3xl font-bold text-white mb-1">500+</div>
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
               <div className="text-sm">Proyek Selesai</div>
             </div>
             <div className="text-center">
