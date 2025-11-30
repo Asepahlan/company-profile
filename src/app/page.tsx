@@ -115,7 +115,6 @@ const testimonials = [
   },
 ];
 
-<<<<<<< HEAD
 // Generate structured data for the homepage
 function generateStructuredData() {
   return JSON.stringify({
@@ -149,10 +148,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredData }}
       />
-=======
-export default function Home() {
-  return (
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
@@ -191,7 +186,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -200,9 +195,9 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Layanan Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Layanan Kami</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Solusi lengkap untuk semua kebutuhan digital bisnis Anda
             </p>
           </motion.div>
@@ -218,14 +213,14 @@ export default function Home() {
               <motion.div 
                 key={index}
                 variants={item}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-100"
+                className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-blue-100 dark:hover:border-blue-800"
                 whileHover={{ y: -5 }}
               >
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 mx-auto">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-center">{service.title}</h3>
-                <p className="text-gray-600 text-center mb-6">{service.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-center text-gray-900 dark:text-white">{service.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-center mb-6">{service.description}</p>
                 <div className="text-center">
                   <Link href={service.href} className="text-blue-600 font-medium hover:underline inline-flex items-center">
                     Selengkapnya <FiArrowRight className="ml-1" />
@@ -238,7 +233,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -247,8 +242,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Mengapa Memilih Kami?</h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Mengapa Memilih Kami?</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                 Kami berkomitmen memberikan layanan terbaik dengan kualitas yang tidak perlu diragukan lagi.
               </p>
               
@@ -266,8 +261,8 @@ export default function Home() {
                       {feature.icon}
                     </div>
                     <div className="ml-4">
-                      <h3 className="text-lg font-semibold text-gray-900">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -301,7 +296,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -310,9 +305,9 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Portofolio Kami</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Portofolio Kami</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Beberapa proyek terbaik yang telah kami kerjakan
             </p>
           </motion.div>
@@ -368,7 +363,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -377,7 +372,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Apa Kata Klien Kami?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Apa Kata Klien Kami?</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
           </motion.div>
 
@@ -385,7 +380,7 @@ export default function Home() {
             {testimonials.map((testimonial, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-md"
+                className="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -402,11 +397,11 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg">{testimonial.name}</h4>
-                    <p className="text-blue-600">{testimonial.role}</p>
+                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">{testimonial.name}</h4>
+                    <p className="text-blue-600 dark:text-blue-400">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-600 italic">"{testimonial.content}"</p>
+                <p className="text-gray-600 dark:text-gray-300 italic">"{testimonial.content}"</p>
                 <div className="flex mt-4 text-yellow-400">
                   {[...Array(5)].map((_, i) => (
                     <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -449,9 +444,6 @@ export default function Home() {
         </div>
       </section>
     </div>
-<<<<<<< HEAD
     </>
-=======
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
   );
 }

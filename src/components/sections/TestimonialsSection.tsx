@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 const testimonials = [
   {
@@ -38,11 +40,7 @@ export function TestimonialsSection() {
   };
 
   return (
-<<<<<<< HEAD
     <section id="testimoni" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 text-white">
-=======
-    <section id="testimoni" className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-blue-200 font-semibold mb-2 block">Testimoni</span>
@@ -76,11 +74,7 @@ export function TestimonialsSection() {
                 </div>
                 <p className="text-lg mb-6 italic">"{testimonial.content}"</p>
                 <div className="flex items-center">
-<<<<<<< HEAD
                   <div className="w-14 h-14 rounded-full bg-blue-500/30 dark:bg-blue-400/20 flex items-center justify-center text-2xl font-bold text-white dark:text-white/90 mr-4 border-2 border-blue-300 dark:border-blue-400/50">
-=======
-                  <div className="w-14 h-14 rounded-full bg-blue-500/30 flex items-center justify-center text-2xl font-bold text-white mr-4 border-2 border-blue-300">
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
@@ -93,39 +87,41 @@ export function TestimonialsSection() {
           </div>
 
           <div className="flex justify-center mt-10 space-x-4">
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={prevTestimonial}
-<<<<<<< HEAD
-              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white dark:text-white/90 transition-colors border border-white/20 hover:border-white/30"
-=======
-              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
->>>>>>> fa5288eb9babb8436558af90498de2f306118662
+              className="w-12 h-12 rounded-full bg-white/20 hover:bg-white/30 text-white border border-white/20 hover:border-white/30"
               aria-label="Testimonial sebelumnya"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="primary"
+              size="icon"
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center text-white transition-colors"
+              className="w-12 h-12 rounded-full"
               aria-label="Testimonial berikutnya"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
 
         <div className="text-center mt-16">
           <p className="text-blue-100 mb-6">Bergabunglah dengan ratusan klien yang telah mempercayai layanan kami</p>
-          <a 
+          <Link 
             href="/kontak" 
-            className="inline-block bg-white text-blue-700 hover:bg-blue-50 font-semibold px-8 py-3 rounded-lg transition-colors duration-300"
+            className="inline-block"
           >
-            Hubungi Kami Sekarang
-          </a>
+            <Button variant="primary" size="lg">
+              Hubungi Kami Sekarang
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

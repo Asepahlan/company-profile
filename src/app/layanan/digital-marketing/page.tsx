@@ -57,7 +57,7 @@ const item: Variants = {
 const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <div className="text-center mb-16">
     <motion.h2 
-      className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+      className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -66,7 +66,7 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
       {title}
     </motion.h2>
     <motion.p 
-      className="text-lg text-gray-600 max-w-3xl mx-auto"
+      className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -79,38 +79,38 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
 
 const FeatureCard = ({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) => (
   <motion.div 
-    className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 h-full flex flex-col"
+    className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6">
       {icon}
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
-    <p className="text-gray-600 mt-2 flex-grow">{description}</p>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 mt-2 flex-grow">{description}</p>
   </motion.div>
 );
 
 const ProcessStep = ({ step, index }: { step: any; index: number }) => (
   <motion.div 
-    className="relative pl-8 pb-8 border-l-2 border-blue-200 last:border-transparent last:pb-0"
+    className="relative pl-8 pb-8 border-l-2 border-blue-200 dark:border-blue-800 last:border-transparent last:pb-0"
     variants={item}
   >
-    <div className="absolute w-6 h-6 bg-blue-600 rounded-full -left-3 top-0 flex items-center justify-center">
+    <div className="absolute w-6 h-6 bg-blue-600 dark:bg-blue-700 rounded-full -left-3 top-0 flex items-center justify-center">
       <span className="text-white font-bold text-sm">{index + 1}</span>
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-    <p className="text-gray-600">{step.description}</p>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+    <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
   </motion.div>
 );
 
 const PortfolioCard = ({ project }: { project: any }) => (
   <motion.div 
-    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="relative h-48 bg-gray-200">
+    <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
       <Image 
         src={project.image} 
         alt={project.title} 
@@ -119,11 +119,11 @@ const PortfolioCard = ({ project }: { project: any }) => (
       />
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-      <p className="text-gray-600 mb-4">{project.description}</p>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
       <Link 
         href={`/portofolio/${project.id}`} 
-        className="text-blue-600 font-medium inline-flex items-center hover:text-blue-800"
+        className="text-blue-600 dark:text-blue-400 font-medium inline-flex items-center hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
       >
         Lihat Detail <FiArrowRight className="ml-1" />
       </Link>
@@ -137,37 +137,37 @@ const services = [
     id: 'social-media',
     title: 'Social Media Marketing',
     description: 'Strategi dan manajemen media sosial untuk meningkatkan engagement dan brand awareness.',
-    icon: <FiShare2 className="text-blue-600 text-2xl" />,
+    icon: <FiShare2 className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
   {
     id: 'seo',
     title: 'SEO (Search Engine Optimization)',
     description: 'Optimasi website untuk peringkat lebih tinggi di hasil pencarian Google.',
-    icon: <FiSearch className="text-blue-600 text-2xl" />,
+    icon: <FiSearch className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
   {
     id: 'sem',
     title: 'SEM / Google Ads',
     description: 'Kampanye iklan berbayar yang terukur dan efektif untuk hasil instan.',
-    icon: <FiDollarSign className="text-blue-600 text-2xl" />,
+    icon: <FiDollarSign className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
   {
     id: 'content-marketing',
     title: 'Content Marketing',
     description: 'Konten berkualitas tinggi untuk menarik dan mempertahankan pelanggan.',
-    icon: <FiEdit className="text-blue-600 text-2xl" />,
+    icon: <FiEdit className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
   {
     id: 'branding',
     title: 'Branding & Creative Strategy',
     description: 'Pengembangan identitas merek yang kuat dan konsisten di semua platform.',
-    icon: <FiAward className="text-blue-600 text-2xl" />,
+    icon: <FiAward className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
   {
     id: 'email-marketing',
     title: 'Email Marketing Automation',
     description: 'Strategi email otomatis untuk mempertahankan dan mengkonversi pelanggan.',
-    icon: <FiMail className="text-blue-600 text-2xl" />,
+    icon: <FiMail className="text-blue-600 dark:text-blue-400 text-2xl" />,
   },
 ];
 
@@ -176,43 +176,43 @@ const features = [
   {
     title: 'Strategi Berbasis Data',
     description: 'Setiap keputusan didasarkan pada analisis data dan metrik yang akurat.',
-    icon: <FiBarChart2 className="text-blue-600 text-3xl" />,
+    icon: <FiBarChart2 className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
   {
     title: 'Targeting Iklan yang Tepat',
     description: 'Mencapai audiens yang paling relevan dengan strategi targeting yang canggih.',
-    icon: <FiTarget className="text-blue-600 text-3xl" />,
+    icon: <FiTarget className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
   {
     title: 'Optimasi Konten Berkualitas',
     description: 'Konten yang menarik dan dioptimalkan untuk konversi maksimal.',
-    icon: <FiEdit className="text-blue-600 text-3xl" />,
+    icon: <FiEdit className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
   {
     title: 'Laporan Performa Lengkap',
     description: 'Transparansi penuh dengan laporan kinerja yang mudah dipahami.',
-    icon: <FiPieChart className="text-blue-600 text-3xl" />,
+    icon: <FiPieChart className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
   {
     title: 'Tim Ahli & Berpengalaman',
     description: 'Dikelola oleh profesional dengan pengalaman di berbagai industri.',
-    icon: <FiUsers className="text-blue-600 text-3xl" />,
+    icon: <FiUsers className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
   {
     title: 'Hasil yang Terukur',
     description: 'Fokus pada ROI dan metrik kinerja kunci untuk pertumbuhan bisnis.',
-    icon: <FiTrendingUp className="text-blue-600 text-3xl" />,
+    icon: <FiTrendingUp className="text-blue-600 dark:text-blue-400 text-3xl" />,
   },
 ];
 
 // Data Teknologi
 const techStack = [
-  { name: 'Google Analytics', icon: <FiBarChart2 className="text-blue-600 text-3xl" /> },
-  { name: 'Meta Ads Manager', icon: <FiShare2 className="text-blue-600 text-3xl" /> },
-  { name: 'Google Ads', icon: <FiDollarSign className="text-blue-600 text-3xl" /> },
-  { name: 'Ahrefs / SEMrush', icon: <FiSearch className="text-blue-600 text-3xl" /> },
-  { name: 'Mailchimp', icon: <FiMail className="text-blue-600 text-3xl" /> },
-  { name: 'Figma', icon: <FiImage className="text-blue-600 text-3xl" /> },
+  { name: 'Google Analytics', icon: <FiBarChart2 className="text-blue-600 dark:text-blue-400 text-3xl" /> },
+  { name: 'Meta Ads Manager', icon: <FiShare2 className="text-blue-600 dark:text-blue-400 text-3xl" /> },
+  { name: 'Google Ads', icon: <FiDollarSign className="text-blue-600 dark:text-blue-400 text-3xl" /> },
+  { name: 'Ahrefs / SEMrush', icon: <FiSearch className="text-blue-600 dark:text-blue-400 text-3xl" /> },
+  { name: 'Mailchimp', icon: <FiMail className="text-blue-600 dark:text-blue-400 text-3xl" /> },
+  { name: 'Figma', icon: <FiImage className="text-blue-600 dark:text-blue-400 text-3xl" /> },
 ];
 
 // Data Proses Pemasaran
@@ -317,9 +317,9 @@ const pricingPlans = [
 
 export default function DigitalMarketingPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-900 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -345,23 +345,23 @@ export default function DigitalMarketingPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Link href="/kontak">
-                <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg">
+                <Button className="bg-white dark:bg-gray-800 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-700 font-semibold py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                   Hubungi Kami
                 </Button>
               </Link>
               <Link href="#layanan">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg">
+                <Button variant="outline" className="border-white text-white hover:bg-white/10 dark:hover:bg-white/20 font-medium py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                   Lihat Layanan
                 </Button>
               </Link>
             </motion.div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* Layanan Section */}
-      <section id="layanan" className="py-20 bg-white">
+      <section id="layanan" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Jenis Layanan Digital Marketing" 
@@ -388,7 +388,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Keunggulan Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Keunggulan Kami" 
@@ -405,15 +405,15 @@ export default function DigitalMarketingPage() {
             {features.map((feature, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
                 variants={item}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6 transition-colors duration-200">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 transition-colors duration-200">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 flex-grow transition-colors duration-200">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -421,7 +421,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Teknologi Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Teknologi & Tools" 
@@ -438,12 +438,12 @@ export default function DigitalMarketingPage() {
             {techStack.map((tech, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow duration-300 flex flex-col items-center border border-gray-100"
+                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
                 variants={item}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-3">{tech.icon}</div>
-                <h3 className="text-lg font-medium text-gray-900">{tech.name}</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{tech.name}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -451,7 +451,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Proses Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-blue-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Alur Kerja Kami" 
@@ -475,7 +475,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Portofolio Kami" 
@@ -502,7 +502,7 @@ export default function DigitalMarketingPage() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/portofolio">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg">
+              <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200">
                 Lihat Semua Portofolio
               </Button>
             </Link>
@@ -511,7 +511,7 @@ export default function DigitalMarketingPage() {
       </section>
 
       {/* Harga Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-blue-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Paket Harga" 
@@ -528,7 +528,7 @@ export default function DigitalMarketingPage() {
             {pricingPlans.map((plan, index) => (
               <motion.div 
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${
+                className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border-2 ${
                   plan.popular ? 'border-blue-600 transform scale-105' : 'border-transparent'
                 }`}
                 variants={item}
@@ -540,17 +540,17 @@ export default function DigitalMarketingPage() {
                   </div>
                 )}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  <p className="text-gray-600 mb-6">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{plan.description}</p>
                   <div className="mb-8">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                    {plan.price !== 'Custom' && <span className="text-gray-600">/bulan</span>}
+                    <span className="text-4xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
+                    {plan.price !== 'Custom' && <span className="text-gray-600 dark:text-gray-400">/bulan</span>}
                   </div>
                   <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center">
                         <FiCheck className="text-green-500 mr-2" />
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -558,8 +558,8 @@ export default function DigitalMarketingPage() {
                     href="/kontak" 
                     className={`block text-center py-3 px-6 rounded-lg font-medium transition-colors ${
                       plan.popular 
-                        ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white hover:bg-blue-700 dark:hover:bg-blue-800' 
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
                     Mulai Sekarang
@@ -600,12 +600,12 @@ export default function DigitalMarketingPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link href="/kontak">
-              <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg">
+              <Button className="bg-white dark:bg-gray-800 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-700 font-semibold py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                 Hubungi Kami
               </Button>
             </Link>
             <Link href="/layanan">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg">
+              <Button variant="outline" className="border-white text-white hover:bg-white/10 dark:hover:bg-white/20 font-medium py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                 Pelajari Layanan
               </Button>
             </Link>

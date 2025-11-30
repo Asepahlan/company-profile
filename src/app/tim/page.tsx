@@ -52,18 +52,18 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{subtitle}</p>
   </motion.div>
 );
 
 const TeamCard = ({ member }: { member: TeamMember }) => (
   <motion.div 
-    className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+    className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="relative h-64 bg-gray-200">
+    <div className="relative h-64 bg-gray-200 dark:bg-gray-700">
       <Image 
         src={member.image} 
         alt={member.name} 
@@ -73,9 +73,9 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
       />
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
-      <p className="text-blue-600 font-medium mb-4">{member.role}</p>
-      <p className="text-gray-600 mb-6">{member.description}</p>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{member.name}</h3>
+      <p className="text-blue-600 dark:text-blue-400 font-medium mb-4">{member.role}</p>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">{member.description}</p>
       <div className="flex space-x-4">
         {member.social.linkedin && (
           <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
@@ -232,9 +232,9 @@ const values = [
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -255,17 +255,15 @@ export default function TeamPage() {
             </motion.p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
       {/* Team Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Tim Inti Kami" 
             subtitle="Berikut adalah tim inti yang akan membantu mewujudkan proyek digital Anda"
           />
-          
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={container}
@@ -281,25 +279,24 @@ export default function TeamPage() {
       </section>
 
       {/* Why Us Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Mengapa Memilih Tim Kami?" 
             subtitle="Kami berkomitmen memberikan yang terbaik untuk kesuksesan proyek Anda"
           />
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {whyUs.map((item, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{item.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -307,52 +304,52 @@ export default function TeamPage() {
       </section>
 
       {/* Nilai-nilai Tim */}
-      <section className="py-16 bg-gray-50">
+      <div className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Nilai-nilai Kami</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+                className="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Misi Tim */}
-      <section className="py-16 bg-white">
+      <div className="py-16 bg-white dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-blue-50 p-8 rounded-2xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Misi Kami</h2>
-            <p className="text-xl text-gray-700 mb-6">
+          <div className="bg-blue-50 dark:bg-blue-900 p-8 rounded-2xl">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Misi Kami</h2>
+            <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
               Kami berkomitmen untuk memberikan solusi digital terbaik dengan mengedepankan kualitas, inovasi, dan kepuasan pelanggan. Setiap anggota tim kami berdedikasi untuk memberikan yang terbaik dalam setiap proyek yang kami kerjakan.
             </p>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-400">
               Keberhasilan klien adalah kebanggaan dan motivasi terbesar kami.
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Ingin Bekerja Sama dengan Tim Kami?</h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-blue-100 dark:text-blue-200 mb-8">
             Hubungi kami sekarang dan mari wujudkan ide digital Anda menjadi kenyataan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-blue-700 hover:bg-blue-50">
+            <Button asChild size="lg" className="bg-white dark:bg-gray-700 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-600">
               <Link href="/kontak">Hubungi Kami</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-700">

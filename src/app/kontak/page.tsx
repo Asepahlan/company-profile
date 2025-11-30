@@ -45,23 +45,23 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{subtitle}</p>
   </motion.div>
 );
 
 const ContactInfoCard = ({ icon: Icon, title, children, className = '' }: { icon: any; title: string; children: React.ReactNode; className?: string }) => (
   <motion.div 
-    className={`bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 ${className}`}
+    className={`bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 ${className}`}
     variants={item}
   >
     <div className="flex items-start">
-      <div className="flex-shrink-0 h-12 w-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mr-4">
+      <div className="flex-shrink-0 h-12 w-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4">
         <Icon className="w-5 h-5" />
       </div>
       <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-        <div className="text-gray-600 space-y-1">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>
+        <div className="text-gray-600 dark:text-gray-300 space-y-1">
           {children}
         </div>
       </div>
@@ -96,7 +96,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Nama Lengkap <span className="text-red-500">*</span>
           </label>
           <Input
@@ -112,7 +112,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
         </div>
         
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Email <span className="text-red-500">*</span>
           </label>
           <Input
@@ -128,7 +128,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Nomor Telepon <span className="text-red-500">*</span>
           </label>
           <Input
@@ -144,7 +144,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Nama Perusahaan <span className="text-gray-400">(opsional)</span>
           </label>
           <Input
@@ -160,7 +160,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Subjek <span className="text-red-500">*</span>
         </label>
         <Input
@@ -176,7 +176,7 @@ const ContactForm = ({ onSubmit }: { onSubmit: (data: ContactFormData) => void }
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Pesan <span className="text-red-500">*</span>
         </label>
         <Textarea
@@ -211,9 +211,9 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="relative py-24 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
@@ -232,11 +232,11 @@ export default function ContactPage() {
             Hubungi kami untuk konsultasi, penawaran, atau pertanyaan lainnya.
           </motion.p>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="grid grid-cols-1 lg:grid-cols-2 gap-12"
@@ -252,8 +252,8 @@ export default function ContactPage() {
                 title="Telepon & WhatsApp"
               >
                 <div className="flex flex-col space-y-1">
-                  <a href="tel:+6281234567890" className="flex items-center hover:text-blue-600 transition-colors">
-                    <FiPhone className="mr-2 text-blue-500" />
+                  <a href="tel:+6281234567890" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <FiPhone className="mr-2 text-blue-500 dark:text-blue-400" />
                     +62 812-3456-7890
                   </a>
                   <a href="https://wa.me/6281234567890" className="flex items-center text-green-600 hover:text-green-700 transition-colors">
@@ -269,8 +269,8 @@ export default function ContactPage() {
                 icon={FiMail} 
                 title="Email"
               >
-                <a href="mailto:info@ahlandev.com" className="flex items-center hover:text-blue-600 transition-colors">
-                  <FiMail className="mr-2 text-blue-500" />
+                <a href="mailto:info@ahlandev.com" className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <FiMail className="mr-2 text-blue-500 dark:text-blue-400" />
                   info@ahlandev.com
                 </a>
               </ContactInfoCard>
@@ -287,7 +287,7 @@ export default function ContactPage() {
                     href="https://maps.google.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-600 hover:text-blue-800 mt-2"
+                    className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mt-2 transition-colors"
                   >
                     Lihat di Peta <FiArrowRight className="ml-1" />
                   </a>
@@ -301,18 +301,18 @@ export default function ContactPage() {
                 <div className="space-y-1">
                   <p className="flex justify-between">
                     <span>Senin - Jumat</span>
-                    <span className="text-gray-900 font-medium">09:00 - 17:00 WIB</span>
+                    <span className="text-gray-900 dark:text-gray-200 font-medium">09:00 - 17:00 WIB</span>
                   </p>
                   <p className="flex justify-between">
                     <span>Sabtu</span>
-                    <span className="text-gray-900 font-medium">09:00 - 14:00 WIB</span>
+                    <span className="text-gray-900 dark:text-gray-200 font-medium">09:00 - 14:00 WIB</span>
                   </p>
-                  <p className="text-gray-900 font-medium">Minggu & Hari Libur: Tutup</p>
+                  <p className="text-gray-900 dark:text-gray-200 font-medium">Minggu & Hari Libur: Tutup</p>
                 </div>
               </ContactInfoCard>
 
               <motion.div 
-                className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 rounded-2xl text-white"
+                className="bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-700 dark:to-indigo-800 p-6 rounded-2xl text-white"
                 variants={item}
               >
                 <h3 className="text-xl font-semibold mb-4">Mengapa Memilih Kami?</h3>
@@ -334,11 +334,11 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <motion.div 
-              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+              className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
               variants={item}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Kirim Pesan</h2>
-              <p className="text-gray-600 mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">Kirim Pesan</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
                 Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda.
               </p>
               
@@ -349,31 +349,53 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle 
             title="Temukan Kami di Peta" 
             subtitle="Kunjungi kantor kami untuk bertemu langsung dengan tim profesional kami"
           />
           <motion.div 
-            className="rounded-2xl overflow-hidden shadow-xl border border-gray-200"
+            className="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="aspect-w-16 aspect-h-9 w-full h-96 bg-gray-200">
-              {/* Replace with actual map component or iframe */}
-              <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                <p className="text-gray-500">Peta Lokasi Kantor</p>
+            <div className="w-full h-[500px] relative">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8007155098126!2d107.60802431533236!3d-6.917520969427731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6256c5e1b6d%3A0x8ddf9a2a2b2b3b3b!2sJl.%20Contoh%20No.123%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                className="rounded-lg"
+                title="Lokasi Kantor AhlanDev"
+              ></iframe>
+              <div className="absolute bottom-4 right-4 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md">
+                <a 
+                  href="https://www.google.com/maps/place/Jl.+Contoh+No.123,+Kota+Bandung,+Jawa+Barat/@-6.9175209,107.6080243,17z/data=!3m1!4b1!4m5!3m4!1s0x2e68e6256c5e1b6d:0x8ddf9a2a2b2b3b3b!8m2!3d-6.9175209!4d107.610213" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
+                >
+                  <FiMapPin className="mr-2" /> Buka di Google Maps
+                </a>
               </div>
+            </div>
+            <div className="p-6 border-t border-gray-100 dark:border-gray-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Alamat Kantor</h3>
+              <p className="text-gray-600 dark:text-gray-300">Jl. Contoh No. 123, Kel. Contoh</p>
+              <p className="text-gray-600 dark:text-gray-300">Kec. Contoh, Kota Bandung</p>
+              <p className="text-gray-600 dark:text-gray-300">Jawa Barat, Indonesia 12345</p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-6"
@@ -401,7 +423,7 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Link href="/layanan">
-              <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg flex items-center">
+              <Button className="bg-white dark:bg-gray-700 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-600 font-semibold py-3 px-8 rounded-lg text-lg flex items-center">
                 Lihat Layanan Kami
               </Button>
             </Link>

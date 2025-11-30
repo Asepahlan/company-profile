@@ -40,15 +40,15 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{subtitle}</p>
   </motion.div>
 );
 
 // FAQ Item Component
 const FAQItem = ({ faq, isOpen, onClick }: { faq: FAQItem; isOpen: boolean; onClick: () => void }) => (
   <motion.div 
-    className="border border-gray-200 rounded-2xl overflow-hidden mb-4"
+    className="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden mb-4 shadow-sm hover:shadow-md transition-shadow"
     variants={item}
     initial="hidden"
     whileInView="show"
@@ -56,13 +56,15 @@ const FAQItem = ({ faq, isOpen, onClick }: { faq: FAQItem; isOpen: boolean; onCl
   >
     <button
       className={`w-full px-6 py-5 text-left flex justify-between items-center ${
-        isOpen ? 'bg-blue-50' : 'bg-white hover:bg-gray-50'
+        isOpen 
+          ? 'bg-blue-50 dark:bg-blue-900/30' 
+          : 'bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700'
       } transition-colors duration-200`}
       onClick={onClick}
     >
-      <h3 className="text-lg font-medium text-gray-900">{faq.question}</h3>
+      <h3 className="text-lg font-medium text-gray-900 dark:text-white">{faq.question}</h3>
       {isOpen ? (
-        <FiChevronUp className="w-5 h-5 text-blue-600" />
+        <FiChevronUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
       ) : (
         <FiChevronDown className="w-5 h-5 text-gray-400" />
       )}
@@ -73,7 +75,7 @@ const FAQItem = ({ faq, isOpen, onClick }: { faq: FAQItem; isOpen: boolean; onCl
       className="overflow-hidden"
       transition={{ duration: 0.3 }}
     >
-      <div className="px-6 pb-6 pt-2 text-gray-600">
+      <div className="px-6 pb-6 pt-2 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800">
         {faq.answer}
       </div>
     </motion.div>
@@ -196,7 +198,7 @@ export default function FAQPage() {
     : faqData.filter(faq => faq.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
         <div className="container mx-auto px-4">
@@ -219,11 +221,11 @@ export default function FAQPage() {
             </motion.p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Category Filter */}
           <motion.div 
@@ -239,7 +241,7 @@ export default function FAQPage() {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === category.id
                     ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
                 variants={item}
                 onClick={() => setActiveCategory(category.id)}
@@ -270,7 +272,7 @@ export default function FAQPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2 
@@ -299,7 +301,7 @@ export default function FAQPage() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Link href="/kontak">
-                <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg flex items-center">
+                <Button className="bg-white dark:bg-gray-700 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-600 font-semibold py-3 px-8 rounded-lg text-lg flex items-center">
                   <FiMail className="mr-2" /> Email Kami
                 </Button>
               </Link>

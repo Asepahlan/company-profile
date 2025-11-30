@@ -34,7 +34,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0f172a] text-gray-300 py-20">
+    <footer className="bg-gray-900 text-gray-300 py-20 dark:bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16">
           {/* Tentang Perusahaan */}

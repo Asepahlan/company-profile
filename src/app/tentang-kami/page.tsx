@@ -218,32 +218,32 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{subtitle}</p>
   </motion.div>
 );
 
 const ValueCard = ({ icon, title, description }: ValueCard) => (
   <motion.div 
-    className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col"
+    className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+    <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
       {icon}
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 flex-grow">{description}</p>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 flex-grow">{description}</p>
   </motion.div>
 );
 
 const TimelineItem = ({ year, title, description, isLast }: TimelineItem & { isLast?: boolean }) => (
-  <div className="relative pl-8 pb-8 border-l-2 border-blue-100">
+  <div className="relative pl-8 pb-8 border-l-2 border-blue-100 dark:border-blue-900">
     {!isLast && <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-600"></div>}
-    <div className="absolute left-[-4px] top-0 w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-blue-100 transform -translate-x-1/2"></div>
-    <div className="text-sm font-medium text-blue-600 mb-1">{year}</div>
-    <h4 className="text-lg font-semibold text-gray-900 mb-2">{title}</h4>
-    <p className="text-gray-600">{description}</p>
+    <div className="absolute left-[-4px] top-0 w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-blue-100 dark:border-b-blue-900 transform -translate-x-1/2"></div>
+    <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">{year}</div>
+    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{title}</h4>
+    <p className="text-gray-600 dark:text-gray-300">{description}</p>
   </div>
 );
 
@@ -298,7 +298,7 @@ const TechCard = ({ name, icon, color }: TechStack) => (
 
 export default function TentangKami() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-24 bg-gradient-to-r from-blue-700 to-indigo-800 text-white overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -321,7 +321,7 @@ export default function TentangKami() {
       </section>
 
       {/* Profil Perusahaan */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SectionTitle 
             title="Profil Perusahaan" 
@@ -329,42 +329,42 @@ export default function TentangKami() {
           />
           
           <motion.div 
-            className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-20"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 md:p-12 mb-20 dark:shadow-xl dark:shadow-gray-900/20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="prose max-w-none">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Siapa Kami</h3>
-              <p className="text-lg text-gray-600 mb-8">
+            <div className="prose max-w-none dark:prose-invert">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Siapa Kami</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                 AhlanDev adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis tumbuh di era digital. Sejak 2020, kami telah membantu berbagai klien dari berbagai sektor industri dalam melakukan transformasi digital.
               </p>
               
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Apa yang Kami Kerjakan</h3>
-              <p className="text-lg text-gray-600 mb-8">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Apa yang Kami Kerjakan</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
                 Kami menyediakan layanan lengkap dalam pengembangan web, aplikasi mobile, UI/UX design, dan digital marketing. Setiap solusi yang kami berikan dirancang khusus untuk memenuhi kebutuhan unik setiap klien, dengan fokus pada kualitas, keamanan, dan pengalaman pengguna yang luar biasa.
               </p>
               
               <div className="grid md:grid-cols-2 gap-12 mt-12">
                 <div>
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 text-blue-600">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mr-4 text-blue-600 dark:text-blue-400">
                       <FiTarget className="w-6 h-6" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">Visi</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Visi</h3>
                   </div>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-300">
                     Menjadi mitra terpercaya dalam transformasi digital yang membawa dampak positif bagi bisnis dan masyarakat melalui inovasi teknologi yang berkelanjutan.
                   </p>
                 </div>
                 
                 <div>
                   <div className="flex items-center mb-6">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 text-blue-600">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mr-4 text-blue-600 dark:text-blue-400">
                       <FiCheckCircle className="w-6 h-6" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">Misi</h3>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Misi</h3>
                   </div>
                   <ul className="space-y-3">
                     {[
@@ -376,7 +376,7 @@ export default function TentangKami() {
                     ].map((item, index) => (
                       <li key={index} className="flex items-start">
                         <span className="text-blue-600 mr-3 mt-1">•</span>
-                        <span className="text-gray-600">{item}</span>
+                        <span className="text-gray-600 dark:text-gray-300">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -406,7 +406,7 @@ export default function TentangKami() {
       </section>
 
       {/* Sejarah Perjalanan */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SectionTitle 
             title="Sejarah Perjalanan" 
@@ -426,10 +426,10 @@ export default function TentangKami() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-100 h-full">
-                      <div className="text-2xl font-bold text-blue-600 mb-2">{item.year}</div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600">{item.description}</p>
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 h-full">
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">{item.year}</div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
                     </div>
                     {index < history.length - 1 && (
                       <div className="absolute top-1/2 right-0 w-4 h-0.5 bg-blue-200 transform translate-x-1/2"></div>
@@ -452,8 +452,8 @@ export default function TentangKami() {
                     className="relative pl-6"
                   >
                     <div className="absolute -left-2.5 top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-1">{item.year} - {item.title}</h3>
-                    <p className="text-gray-600">{item.description}</p>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{item.year} - {item.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -463,7 +463,7 @@ export default function TentangKami() {
       </section>
       
       {/* Tim Inti */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SectionTitle 
             title="Tim Inti Perusahaan" 
@@ -493,7 +493,7 @@ export default function TentangKami() {
       </section>
       
       {/* Teknologi */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <SectionTitle 
             title="Teknologi yang Kami Gunakan" 
@@ -541,7 +541,7 @@ export default function TentangKami() {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -549,8 +549,8 @@ export default function TentangKami() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Siap Bekerja Dengan Tim Profesional Kami?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Siap Bekerja Dengan Tim Profesional Kami?</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
               Konsultasikan kebutuhan bisnis Anda dengan tim ahli kami dan dapatkan solusi terbaik untuk pertumbuhan bisnis Anda.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

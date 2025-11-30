@@ -59,7 +59,7 @@ const item: Variants = {
 const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <div className="text-center mb-16">
     <motion.h2 
-      className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+      className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -68,7 +68,7 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
       {title}
     </motion.h2>
     <motion.p 
-      className="text-lg text-gray-600 max-w-3xl mx-auto"
+      className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -81,38 +81,38 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
 
 const FeatureCard = ({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) => (
   <motion.div 
-    className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 h-full flex flex-col"
+    className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full flex flex-col"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6">
       {icon}
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-3">{title}</h3>
-    <p className="text-gray-600 mt-2 flex-grow">{description}</p>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 mt-2 flex-grow">{description}</p>
   </motion.div>
 );
 
 const ProcessStep = ({ step, index }: { step: any; index: number }) => (
   <motion.div 
-    className="relative pl-8 pb-8 border-l-2 border-blue-200 last:border-transparent last:pb-0"
+    className="relative pl-8 pb-8 border-l-2 border-blue-200 dark:border-blue-800 last:border-transparent last:pb-0"
     variants={item}
   >
-    <div className="absolute w-6 h-6 bg-blue-600 rounded-full -left-3 top-0 flex items-center justify-center">
+    <div className="absolute w-6 h-6 bg-blue-600 dark:bg-blue-700 rounded-full -left-3 top-0 flex items-center justify-center">
       <span className="text-white font-bold text-sm">{index + 1}</span>
     </div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
-    <p className="text-gray-600">{step.description}</p>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+    <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
   </motion.div>
 );
 
 const PortfolioCard = ({ project }: { project: any }) => (
   <motion.div 
-    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="relative h-48 bg-gray-200">
+    <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
       <Image 
         src={project.image} 
         alt={project.title} 
@@ -121,11 +121,11 @@ const PortfolioCard = ({ project }: { project: any }) => (
       />
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-      <p className="text-gray-600 mb-4">{project.description}</p>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
       <Link 
         href={`/portofolio/${project.id}`} 
-        className="text-blue-600 font-medium inline-flex items-center hover:text-blue-800"
+        className="text-blue-600 dark:text-blue-400 font-medium inline-flex items-center hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
       >
         Lihat Detail <FiArrowRight className="ml-1" />
       </Link>
@@ -319,9 +319,9 @@ const pricingPlans = [
 
 const UIXPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-900 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -347,23 +347,23 @@ const UIXPage = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Link href="/kontak">
-                <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg">
+                <Button className="bg-white dark:bg-gray-800 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-700 font-semibold py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                   Hubungi Kami
                 </Button>
               </Link>
               <Link href="#layanan">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg">
+                <Button variant="outline" className="border-blue-600 dark:border-white text-blue-600 dark:text-white hover:bg-blue-50 dark:hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                   Lihat Layanan
                 </Button>
               </Link>
             </motion.div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* Layanan Section */}
-      <section id="layanan" className="py-20 bg-white">
+      <section id="layanan" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Jenis Layanan UI/UX Design" 
@@ -390,7 +390,7 @@ const UIXPage = () => {
       </section>
 
       {/* Keunggulan Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Keunggulan Kami" 
@@ -407,15 +407,15 @@ const UIXPage = () => {
             {features.map((feature, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
                 variants={item}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -423,7 +423,7 @@ const UIXPage = () => {
       </section>
 
       {/* Teknologi Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Teknologi & Tools" 
@@ -440,12 +440,12 @@ const UIXPage = () => {
             {techStack.map((tech, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow duration-300 flex flex-col items-center border border-gray-100"
+                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow duration-300 flex flex-col items-center border border-gray-100 dark:border-gray-700"
                 variants={item}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-3">{tech.icon}</div>
-                <h3 className="text-lg font-medium text-gray-900">{tech.name}</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{tech.name}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -453,7 +453,7 @@ const UIXPage = () => {
       </section>
 
       {/* Proses Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Proses Desain Kami" 
@@ -477,7 +477,7 @@ const UIXPage = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Portofolio Kami" 
@@ -504,7 +504,7 @@ const UIXPage = () => {
             transition={{ duration: 0.5 }}
           >
             <Link href="/portofolio">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg">
+              <Button className="bg-blue-600 dark:bg-blue-900 hover:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-3 px-8 rounded-lg">
                 Lihat Semua Portofolio
               </Button>
             </Link>
@@ -513,7 +513,7 @@ const UIXPage = () => {
       </section>
 
       {/* Harga Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-blue-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Paket Harga" 
@@ -530,29 +530,29 @@ const UIXPage = () => {
             {pricingPlans.map((plan, index) => (
               <motion.div 
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 ${
+                className={`bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border-2 ${
                   plan.popular ? 'border-blue-600 transform scale-105' : 'border-transparent'
                 }`}
                 variants={item}
                 whileHover={{ y: -10 }}
               >
                 {plan.popular && (
-                  <div className="bg-blue-600 text-white text-center py-2 font-medium">
+                  <div className="bg-blue-600 dark:bg-blue-900 text-white text-center py-2 font-medium">
                     Paling Populer
                   </div>
                 )}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  <p className="text-gray-600 mb-6">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{plan.description}</p>
                   <div className="mb-8">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                    {plan.price !== 'Custom' && <span className="text-gray-600">/proyek</span>}
+                    <span className="text-4xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
+                    {plan.price !== 'Custom' && <span className="text-gray-500 dark:text-gray-400">/proyek</span>}
                   </div>
                   <ul className="space-y-4 mb-8">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center">
                         <FiCheck className="text-green-500 mr-2" />
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -560,8 +560,8 @@ const UIXPage = () => {
                     href="/kontak" 
                     className={`block text-center py-3 px-6 rounded-lg font-medium transition-colors ${
                       plan.popular 
-                        ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                        ? 'bg-blue-600 dark:bg-blue-900 text-white hover:bg-blue-700 dark:hover:bg-blue-800' 
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
                     Mulai Sekarang
@@ -574,7 +574,7 @@ const UIXPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-900 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-6"
@@ -602,12 +602,12 @@ const UIXPage = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Link href="/kontak">
-              <Button className="bg-white text-blue-700 hover:bg-blue-50 font-semibold py-3 px-8 rounded-lg text-lg">
+              <Button className="bg-white dark:bg-gray-800 text-blue-700 dark:text-white hover:bg-blue-50 dark:hover:bg-gray-700 font-semibold py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                 Hubungi Kami
               </Button>
             </Link>
             <Link href="/portofolio">
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg">
+              <Button variant="outline" className="border-blue-600 dark:border-white text-blue-600 dark:text-white hover:bg-blue-50 dark:hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg transition-colors duration-200">
                 Lihat Portfolio
               </Button>
             </Link>

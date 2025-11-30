@@ -1,26 +1,33 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import { FiClock, FiSearch, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import Image from 'next/image';
 
 // Animation variants
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
+      when: "beforeChildren",
       staggerChildren: 0.1,
-      delayChildren: 0.3,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 10 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.3
+    }
+  },
 };
 
 // Reusable Components
@@ -32,8 +39,8 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
   >
-    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-    <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
+    <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{subtitle}</p>
   </motion.div>
 );
 
@@ -49,35 +56,35 @@ interface BlogCardProps {
 
 const BlogCard = ({ blog }: { blog: BlogCardProps }) => (
   <motion.div 
-    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="relative h-48 bg-gray-200">
+    <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
       <Image 
         src={blog.image} 
         alt={blog.title} 
         fill 
         className="object-cover"
       />
-      <span className="absolute top-4 right-4 bg-blue-100 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
+      <span className="absolute top-4 right-4 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full">
         {blog.category}
       </span>
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{blog.title}</h3>
-      <p className="text-gray-600 mb-4">{blog.description}</p>
-      <div className="flex items-center text-sm text-gray-500 mb-4">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{blog.title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">{blog.description}</p>
+      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
         <span>{blog.date}</span>
         <span className="mx-2">•</span>
-        <div className="flex items-center text-blue-600">
+        <div className="flex items-center text-blue-600 dark:text-blue-400">
           <FiClock className="mr-1" />
           {blog.readTime}
         </div>
       </div>
       <Link 
         href={`/blog/${blog.id}`} 
-        className="text-blue-600 font-medium inline-flex items-center hover:text-blue-800"
+        className="text-blue-600 dark:text-blue-400 font-medium inline-flex items-center hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
       >
         Baca Selengkapnya
         <FiChevronRight className="ml-1" />
@@ -147,10 +154,35 @@ const blogPosts: BlogCardProps[] = [
 const categories = ['Semua', 'Web Development', 'Mobile Apps', 'UI/UX Design', 'Digital Marketing', 'Tips Bisnis'];
 
 export default function BlogPage() {
+  const [selectedCategory, setSelectedCategory] = useState('Semua');
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
+  
+  // Filter posts by selected category
+  const filteredPosts = selectedCategory === 'Semua' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
+
+  // Get current posts for pagination
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const nextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const prevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+
+  // Update current page if it's no longer valid after filtering
+  if (currentPage > totalPages && totalPages > 0) {
+    setCurrentPage(totalPages);
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="relative py-20 md:py-28 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -171,11 +203,11 @@ export default function BlogPage() {
             </motion.p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* Search Bar */}
-      <section className="py-12 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <motion.div 
             className="max-w-2xl mx-auto relative"
@@ -188,33 +220,38 @@ export default function BlogPage() {
               <input
                 type="text"
                 placeholder="Cari artikel…"
-                className="w-full px-6 py-4 pr-12 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-6 py-4 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
-              <FiSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
+              <FiSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 text-xl" />
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Category Filter */}
-      <section className="py-6 bg-white">
+      <section className="py-6 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <motion.div 
             className="flex flex-wrap justify-center gap-2 md:gap-4"
             variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            initial="show"
+            animate="show"
           >
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <motion.button
-                key={index}
+                key={category}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setCurrentPage(1); // Reset to first page when changing category
+                }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  index === 0 
-                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  selectedCategory === category
+                    ? 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
                 }`}
                 variants={item}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {category}
               </motion.button>
@@ -224,43 +261,109 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+            initial="show"
+            animate="show"
           >
-            {blogPosts.map((post) => (
-              <BlogCard key={post.id} blog={post} />
-            ))}
+            {currentPosts.length > 0 ? (
+              currentPosts.map((post) => (
+                <BlogCard key={post.id} blog={post} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-600 dark:text-gray-400 text-lg">Tidak ada artikel dalam kategori ini.</p>
+              </div>
+            )}
           </motion.div>
 
           {/* Pagination */}
-          <motion.div 
-            className="flex justify-center items-center mt-16 gap-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <button className="flex items-center px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50">
-              <FiChevronLeft className="mr-1" /> Sebelumnya
-            </button>
-            <button className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium">1</button>
-            <button className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">2</button>
-            <button className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100">3</button>
-            <button className="flex items-center px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50">
-              Berikutnya <FiChevronRight className="ml-1" />
-            </button>
-          </motion.div>
+          {totalPages > 1 && (
+            <motion.div 
+              className="flex items-center justify-center gap-2 mt-12 flex-wrap"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <button 
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className={`flex items-center px-4 py-2 rounded-lg border ${
+                  currentPage === 1 
+                    ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600' 
+                    : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
+                }`}
+              >
+                <FiChevronLeft className="mr-1" /> Sebelumnya
+              </button>
+              
+              {Array.from({ length: Math.min(3, totalPages) }, (_, i) => {
+                // Show first, last, and current page with neighbors
+                let pageNum;
+                if (currentPage <= 2) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 1) {
+                  pageNum = totalPages - 2 + i;
+                } else {
+                  pageNum = currentPage - 1 + i;
+                }
+                
+                if (pageNum > totalPages) return null;
+                
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => paginate(pageNum)}
+                    className={`px-4 py-2 rounded-lg ${
+                      currentPage === pageNum 
+                        ? 'bg-blue-600 text-white dark:bg-blue-700' 
+                        : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              
+              {totalPages > 3 && currentPage < totalPages - 1 && (
+                <span className="px-2 text-gray-500">...</span>
+              )}
+              
+              {totalPages > 3 && currentPage < totalPages - 1 && (
+                <button
+                  onClick={() => paginate(totalPages)}
+                  className={`px-4 py-2 rounded-lg ${
+                    currentPage === totalPages 
+                      ? 'bg-blue-600 text-white dark:bg-blue-700' 
+                      : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  {totalPages}
+                </button>
+              )}
+              
+              <button 
+                onClick={nextPage}
+                disabled={currentPage === totalPages || totalPages === 0}
+                className={`flex items-center px-4 py-2 rounded-lg border ${
+                  currentPage === totalPages || totalPages === 0
+                    ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600' 
+                    : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'
+                }`}
+              >
+                Berikutnya <FiChevronRight className="ml-1" />
+              </button>
+            </motion.div>
+          )}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-900 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2 

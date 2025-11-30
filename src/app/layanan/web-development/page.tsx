@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -52,7 +53,7 @@ const item: Variants = {
 const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <div className="text-center mb-12">
     <motion.h2 
-      className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+      className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -61,7 +62,7 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
       {title}
     </motion.h2>
     <motion.p 
-      className="text-lg text-gray-600 max-w-3xl mx-auto"
+      className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -72,38 +73,47 @@ const SectionTitle = ({ title, subtitle }: { title: string; subtitle: string }) 
   </div>
 );
 
-const FeatureCard = ({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) => (
+const FeatureCard = ({ title, description, icon }: { 
+  title: string; 
+  description: string; 
+  icon: React.ReactElement<{ className?: string }> 
+}) => (
   <motion.div 
-    className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col"
+    className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="text-blue-600 text-3xl mb-4">{icon}</div>
-    <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 flex-grow">{description}</p>
+    <div className="text-blue-600 dark:text-blue-400 text-3xl mb-4">
+      {React.cloneElement(icon, {
+        ...icon.props,
+        className: `${icon.props.className || ''} text-blue-600 dark:text-blue-400`
+      })}
+    </div>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 flex-grow">{description}</p>
   </motion.div>
 );
 
 const ProcessStep = ({ step, index }: { step: any; index: number }) => (
   <motion.div 
-    className="relative pl-8 pb-8 border-l-2 border-blue-200 last:border-0 last:pb-0"
+    className="relative pl-8 pb-8 border-l-2 border-blue-200 dark:border-blue-800 last:border-0 last:pb-0"
     variants={item}
   >
     <div className="absolute w-6 h-6 bg-blue-600 rounded-full -left-3 flex items-center justify-center">
       <span className="text-white font-semibold text-sm">{index + 1}</span>
     </div>
-    <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
-    <p className="text-gray-600">{step.description}</p>
+    <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{step.title}</h4>
+    <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
   </motion.div>
 );
 
 const ProjectCard = ({ project }: { project: any }) => (
   <motion.div 
-    className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
     variants={item}
     whileHover={{ y: -5 }}
   >
-    <div className="relative h-48 bg-gray-200">
+    <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
       <Image 
         src={project.image} 
         alt={project.title} 
@@ -112,11 +122,11 @@ const ProjectCard = ({ project }: { project: any }) => (
       />
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-      <p className="text-gray-600 mb-4">{project.description}</p>
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
       <Link 
         href={`/portofolio/${project.id}`} 
-        className="text-blue-600 font-medium inline-flex items-center hover:text-blue-800"
+        className="text-blue-600 dark:text-blue-400 font-medium inline-flex items-center hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
       >
         Lihat Detail <FiArrowRight className="ml-1" />
       </Link>
@@ -126,11 +136,11 @@ const ProjectCard = ({ project }: { project: any }) => (
 
 const TestimonialCard = ({ testimonial }: { testimonial: any }) => (
   <motion.div 
-    className="bg-white p-6 rounded-xl shadow-md h-full flex flex-col"
+    className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full flex flex-col border border-gray-100 dark:border-gray-700"
     variants={item}
   >
     <div className="flex items-center mb-4">
-      <div className="w-12 h-12 rounded-full bg-gray-200 mr-4 overflow-hidden">
+      <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 mr-4 overflow-hidden">
         <Image 
           src={testimonial.avatar} 
           alt={testimonial.name} 
@@ -140,11 +150,11 @@ const TestimonialCard = ({ testimonial }: { testimonial: any }) => (
         />
       </div>
       <div>
-        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-        <p className="text-sm text-gray-500">{testimonial.position}</p>
+        <h4 className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</h4>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.position}</p>
       </div>
     </div>
-    <p className="text-gray-600 italic flex-grow">"{testimonial.comment}"</p>
+    <p className="text-gray-600 dark:text-gray-300 italic flex-grow">"{testimonial.comment}"</p>
   </motion.div>
 );
 
@@ -346,9 +356,9 @@ const testimonials = [
   },
 ];
 
-const WebDevelopmentPage = () => {
+function WebDevelopmentPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
         <div className="container mx-auto px-4">
@@ -381,18 +391,18 @@ const WebDevelopmentPage = () => {
                 </Button>
               </Link>
               <Link href="#layanan">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg">
+                <Button variant="outline" className="border-white text-white hover:bg-white/10 font-medium py-3 px-8 rounded-lg text-lg dark:border-white dark:text-white dark:hover:bg-white/20">
                   Lihat Layanan
                 </Button>
               </Link>
             </motion.div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
       </section>
 
       {/* Layanan Section */}
-      <section id="layanan" className="py-20 bg-white">
+      <section id="layanan" className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Layanan Web Development Kami" 
@@ -419,7 +429,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* Keunggulan Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Mengapa Memilih Kami?" 
@@ -428,66 +438,66 @@ const WebDevelopmentPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div 
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center border border-gray-100 dark:border-gray-600"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiAward className="text-blue-600 text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Berkualitas Tinggi</h3>
-              <p className="text-gray-600">Website berkualitas premium dengan performa optimal</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Berkualitas Tinggi</h3>
+              <p className="text-gray-600 dark:text-gray-300">Website berkualitas premium dengan performa optimal</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center border border-gray-100 dark:border-gray-600"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiClock className="text-blue-600 text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Tepat Waktu</h3>
-              <p className="text-gray-600">Proyek selesai sesuai jadwal yang disepakati</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Tepat Waktu</h3>
+              <p className="text-gray-600 dark:text-gray-300">Proyek selesai sesuai jadwal yang disepakati</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center border border-gray-100 dark:border-gray-600"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiShield className="text-blue-600 text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Aman & Terpercaya</h3>
-              <p className="text-gray-600">Keamanan data dan website Anda adalah prioritas kami</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Aman & Terpercaya</h3>
+              <p className="text-gray-600 dark:text-gray-300">Keamanan data dan website Anda adalah prioritas kami</p>
             </motion.div>
             
             <motion.div 
-              className="bg-white p-6 rounded-xl shadow-md text-center"
+              className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center border border-gray-100 dark:border-gray-600"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FiSettings className="text-blue-600 text-2xl" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Dukungan 24/7</h3>
-              <p className="text-gray-600">Tim support kami siap membantu kapan saja</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Dukungan 24/7</h3>
+              <p className="text-gray-600 dark:text-gray-300">Tim support kami siap membantu kapan saja</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Teknologi Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Teknologi yang Kami Gunakan" 
@@ -504,12 +514,12 @@ const WebDevelopmentPage = () => {
             {techStack.map((tech, index) => (
               <motion.div 
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow duration-300 flex flex-col items-center"
+                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow duration-300 flex flex-col items-center border border-gray-100 dark:border-gray-600"
                 variants={item}
                 whileHover={{ y: -5 }}
               >
                 <div className="text-4xl mb-3">{tech.icon}</div>
-                <h3 className="text-lg font-medium text-gray-900">{tech.name}</h3>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white">{tech.name}</h3>
               </motion.div>
             ))}
           </motion.div>
@@ -517,7 +527,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* Proses Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Proses Pengembangan Website" 
@@ -541,7 +551,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* Harga Section */}
-      <section id="harga" className="py-20 bg-white">
+      <section id="harga" className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Paket Harga" 
@@ -558,8 +568,8 @@ const WebDevelopmentPage = () => {
             {pricingPlans.map((plan, index) => (
               <motion.div 
                 key={plan.name}
-                className={`bg-white rounded-xl shadow-lg overflow-hidden border-2 ${
-                  plan.popular ? 'border-blue-600 transform scale-105' : 'border-transparent'
+                className={`bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden border-2 ${
+                  plan.popular ? 'border-blue-600 dark:border-blue-500 transform scale-105' : 'border-transparent dark:border-gray-600'
                 }`}
                 variants={item}
                 whileHover={{ y: -5 }}
@@ -570,17 +580,17 @@ const WebDevelopmentPage = () => {
                   </div>
                 )}
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  <p className="text-gray-600 mb-6">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">{plan.description}</p>
                   <div className="mb-6">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                    {plan.name !== 'Enterprise' && <span className="text-gray-500">/proyek</span>}
+                    <span className="text-4xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
+                    {plan.name !== 'Enterprise' && <span className="text-gray-500 dark:text-gray-400">/proyek</span>}
                   </div>
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center">
                         <FiCheckCircle className="text-green-500 mr-2" />
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -589,7 +599,7 @@ const WebDevelopmentPage = () => {
                       className={`w-full py-3 font-medium rounded-lg ${
                         plan.popular 
                           ? 'bg-blue-600 hover:bg-blue-700 text-white' 
-                          : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                          : 'bg-blue-50 dark:bg-gray-600 text-blue-600 dark:text-white hover:bg-blue-100 dark:hover:bg-gray-500'
                       }`}
                     >
                       Pesan Sekarang
@@ -618,7 +628,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Portofolio Kami" 
@@ -654,7 +664,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* Testimoni Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <SectionTitle 
             title="Apa Kata Klien Kami" 
@@ -676,7 +686,7 @@ const WebDevelopmentPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-6"
@@ -716,6 +726,6 @@ const WebDevelopmentPage = () => {
       </section>
     </div>
   );
-};
+}
 
 export default WebDevelopmentPage;
